@@ -15,6 +15,7 @@
     const produtosSemCategoriaEl = document.getElementById('produtos-sem-categoria');
     const produtosRecentesEl = document.getElementById('produtos-recentes');
 
+
     // Elementos da lista de produtos
     const listaProdutosEl = document.getElementById('lista-produtos');
     const novoProdutoBtn = document.getElementById('novo-produto');
