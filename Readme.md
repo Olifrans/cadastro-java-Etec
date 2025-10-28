@@ -89,7 +89,7 @@ public class ProdutoDTO {
 }
 ```
 
-## Vantagens no Seu Projeto
+## Vantagens
 
 ### 1. **Evita Referência Circular**
 ```java

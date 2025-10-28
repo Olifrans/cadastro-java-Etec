@@ -66,9 +66,11 @@ public class Produto {
     private String descricao;
     private Double preco;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
 
     // Construtores
     public Produto() {}

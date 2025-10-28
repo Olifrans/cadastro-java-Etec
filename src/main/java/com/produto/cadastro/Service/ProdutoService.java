@@ -64,6 +64,7 @@ public class ProdutoService {
                 .collect(Collectors.toList());
     }
 
+
     public ProdutoDTO cadastrarProdutos(ProdutoDTO produtoDTO) {
         Categoria categoria = categoriaRepository.findById(produtoDTO.getCategoriaId())
                 .orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
