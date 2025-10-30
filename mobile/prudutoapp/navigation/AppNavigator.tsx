@@ -1,26 +1,16 @@
-// import { Stack } from 'expo-router';
-// import { StatusBar } from 'expo-status-bar';
-
-// export default function RootLayout() {
-//   return (
-//     <>
-//       <StatusBar style="light" />
-//       <Stack screenOptions={{ headerShown: false }}>
-//         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-//       </Stack>
-//     </>
-//   );
-// }
-
-
-
-// app/(tabs)/_layout.tsx
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { Tabs } from 'expo-router';
+import { HomeScreen } from '../screens/HomeScreen';
+import { ProductsScreen } from '../screens/ProductsScreen';
+import { CategoriesScreen } from '../screens/CategoriesScreen';
+import { ReportsScreen } from '../screens/ReportsScreen';
 
-export default function TabLayout() {
+const Tab = createBottomTabNavigator();
+
+export const AppNavigator: React.FC = () => {
   return (
-    <Tabs
+    <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: '#3498db',
         tabBarInactiveTintColor: '#7f8c8d',
@@ -38,8 +28,9 @@ export default function TabLayout() {
         },
       }}
     >
-      <Tabs.Screen
-        name="index"
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
         options={{
           title: 'Dashboard',
           tabBarIcon: ({ color, size }) => (
@@ -47,8 +38,9 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="products"
+      <Tab.Screen
+        name="Products"
+        component={ProductsScreen}
         options={{
           title: 'Produtos',
           tabBarIcon: ({ color, size }) => (
@@ -56,8 +48,9 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="categories"
+      <Tab.Screen
+        name="Categories"
+        component={CategoriesScreen}
         options={{
           title: 'Categorias',
           tabBarIcon: ({ color, size }) => (
@@ -65,8 +58,9 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="reports"
+      <Tab.Screen
+        name="Reports"
+        component={ReportsScreen}
         options={{
           title: 'Relatórios',
           tabBarIcon: ({ color, size }) => (
@@ -74,6 +68,6 @@ export default function TabLayout() {
           ),
         }}
       />
-    </Tabs>
+    </Tab.Navigator>
   );
-}
+};

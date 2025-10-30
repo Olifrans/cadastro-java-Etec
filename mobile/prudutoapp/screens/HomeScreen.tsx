@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, ScrollView, RefreshControl, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useProducts } from '../../hooks/useProducts';
-import { useCategories } from '../../hooks/useCategories';
-import { DashboardStats } from '../../types';
+import { useProducts } from '../hooks/useProducts';
+import { useCategories } from '../hooks/useCategories';
+import { DashboardStats } from '../types';
 
-export default function HomeScreen() {
+export const HomeScreen: React.FC = () => {
   const { 
     products, 
     refreshing: productsRefreshing, 
@@ -160,7 +160,7 @@ export default function HomeScreen() {
       </View>
     </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

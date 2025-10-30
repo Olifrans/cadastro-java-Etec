@@ -1,8 +1,8 @@
-import { useState, useCallback } from 'react';
-import { Product, ModalState } from './types';
+import { useCallback, useState } from 'react';
+import { Category, ModalState, Product } from '../types';
 
 const initialState: ModalState = {
-  isOpen: false,
+  visible: false,
   type: 'view',
   title: '',
   data: null,
@@ -11,46 +11,46 @@ const initialState: ModalState = {
 export const useModal = () => {
   const [modalState, setModalState] = useState<ModalState>(initialState);
 
-  const openCreateModal = useCallback(() => {
+  const openCreateModal = useCallback((title: string) => {
     setModalState({
-      isOpen: true,
+      visible: true,
       type: 'create',
-      title: 'Criar Novo Produto',
+      title,
       data: null,
     });
   }, []);
 
-  const openEditModal = useCallback((product: Product) => {
+  const openEditModal = useCallback((title: string, data: Product | Category) => {
     setModalState({
-      isOpen: true,
+      visible: true,
       type: 'edit',
-      title: 'Editar Produto',
-      data: product,
+      title,
+      data,
     });
   }, []);
 
-  const openViewModal = useCallback((product: Product) => {
+  const openViewModal = useCallback((title: string, data: Product | Category) => {
     setModalState({
-      isOpen: true,
+      visible: true,
       type: 'view',
-      title: 'Detalhes do Produto',
-      data: product,
+      title,
+      data,
     });
   }, []);
 
-  const openDeleteModal = useCallback((product: Product) => {
+  const openDeleteModal = useCallback((title: string, data: Product | Category) => {
     setModalState({
-      isOpen: true,
+      visible: true,
       type: 'delete',
-      title: 'Excluir Produto',
-      data: product,
+      title,
+      data,
     });
   }, []);
 
   const closeModal = useCallback(() => {
     setModalState(prevState => ({
       ...prevState,
-      isOpen: false,
+      visible: false,
     }));
   }, []);
 
