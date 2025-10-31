@@ -34,7 +34,7 @@ export const ProductsScreen: React.FC = () => {
 
   const handleUpdateProduct = async (productData: ProductDTO) => {
     if (!productData.id) return;
-    
+
     try {
       await updateProduct(productData.id, productData);
       modal.closeModal();

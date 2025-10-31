@@ -6,16 +6,16 @@ import { useCategories } from '../hooks/useCategories';
 import { DashboardStats } from '../types';
 
 export const HomeScreen: React.FC = () => {
-  const { 
-    products, 
-    refreshing: productsRefreshing, 
-    refreshProducts 
+  const {
+    products,
+    refreshing: productsRefreshing,
+    refreshProducts
   } = useProducts();
-  
-  const { 
-    categories, 
-    refreshing: categoriesRefreshing, 
-    refreshCategories 
+
+  const {
+    categories,
+    refreshing: categoriesRefreshing,
+    refreshCategories
   } = useCategories();
 
   const handleRefresh = () => {
@@ -26,31 +26,31 @@ export const HomeScreen: React.FC = () => {
   const stats: DashboardStats = {
     totalProdutos: products.length,
     totalCategorias: categories.length,
-    valorMedio: products.length > 0 
-      ? products.reduce((sum, p) => sum + (p.preco || 0), 0) / products.length 
+    valorMedio: products.length > 0
+      ? products.reduce((sum, p) => sum + (p.preco || 0), 0) / products.length
       : 0,
     produtosSemCategoria: products.filter(p => !p.categoriaId).length,
-    produtoMaisCaro: products.length > 0 
-      ? Math.max(...products.map(p => p.preco || 0)) 
+    produtoMaisCaro: products.length > 0
+      ? Math.max(...products.map(p => p.preco || 0))
       : 0,
-    produtoMaisBarato: products.length > 0 
-      ? Math.min(...products.map(p => p.preco || 0)) 
+    produtoMaisBarato: products.length > 0
+      ? Math.min(...products.map(p => p.preco || 0))
       : 0,
     valorTotalEstoque: products.reduce((sum, p) => sum + (p.preco || 0), 0),
   };
 
-  const StatCard = ({ 
-    title, 
-    value, 
-    subtitle, 
-    icon, 
-    color 
-  }: { 
-    title: string; 
-    value: string; 
-    subtitle: string; 
-    icon: string; 
-    color: string; 
+  const StatCard = ({
+    title,
+    value,
+    subtitle,
+    icon,
+    color
+  }: {
+    title: string;
+    value: string;
+    subtitle: string;
+    icon: string;
+    color: string;
   }) => (
     <View style={[styles.statCard, { borderLeftColor: color }]}>
       <View style={styles.statHeader}>
@@ -72,14 +72,14 @@ export const HomeScreen: React.FC = () => {
     <ScrollView
       style={styles.container}
       refreshControl={
-        <RefreshControl 
-          refreshing={productsRefreshing || categoriesRefreshing} 
-          onRefresh={handleRefresh} 
+        <RefreshControl
+          refreshing={productsRefreshing || categoriesRefreshing}
+          onRefresh={handleRefresh}
         />
       }
     >
       <Text style={styles.sectionTitle}>Visão Geral</Text>
-      
+
       <View style={styles.statsGrid}>
         <StatCard
           title="Total de Produtos"

@@ -1,20 +1,4 @@
-// import { Stack } from 'expo-router';
-// import { StatusBar } from 'expo-status-bar';
 
-// export default function RootLayout() {
-//   return (
-//     <>
-//       <StatusBar style="light" />
-//       <Stack screenOptions={{ headerShown: false }}>
-//         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-//       </Stack>
-//     </>
-//   );
-// }
-
-
-
-// app/(tabs)/_layout.tsx
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 

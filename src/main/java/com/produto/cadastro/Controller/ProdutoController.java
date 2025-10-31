@@ -50,6 +50,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/produtos")
+@CrossOrigin(origins = "http://localhost:8080") // Permite apenas nesta origem
 public class ProdutoController {
     private final ProdutoService service;
 

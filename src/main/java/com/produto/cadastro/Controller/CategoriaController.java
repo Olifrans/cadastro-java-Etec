@@ -51,6 +51,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/categorias")
+//@CrossOrigin(origins = "http://localhost:4200") // Permite apenas a origem do Angular
+@CrossOrigin(origins = "http://localhost:8080") // Permite apenas nesta origem
 public class CategoriaController {
     private final CategoriaService service;
 

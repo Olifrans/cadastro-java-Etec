@@ -1,20 +1,20 @@
-import React from 'react';
-import { View, Text, ScrollView, RefreshControl, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useProducts } from '../hooks/useProducts';
+import React from 'react';
+import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useCategories } from '../hooks/useCategories';
+import { useProducts } from '../hooks/useProducts';
 
 export const ReportsScreen: React.FC = () => {
-  const { 
-    products, 
-    refreshing: productsRefreshing, 
-    refreshProducts 
+  const {
+    products,
+    refreshing: productsRefreshing,
+    refreshProducts
   } = useProducts();
-  
-  const { 
-    categories, 
-    refreshing: categoriesRefreshing, 
-    refreshCategories 
+
+  const {
+    categories,
+    refreshing: categoriesRefreshing,
+    refreshCategories
   } = useCategories();
 
   const handleRefresh = () => {
@@ -25,15 +25,15 @@ export const ReportsScreen: React.FC = () => {
   // Estatísticas
   const totalProdutos = products.length;
   const totalCategorias = categories.length;
-  const valorMedio = totalProdutos > 0 
-    ? products.reduce((sum, p) => sum + (p.preco || 0), 0) / totalProdutos 
+  const valorMedio = totalProdutos > 0
+    ? products.reduce((sum, p) => sum + (p.preco || 0), 0) / totalProdutos
     : 0;
   const produtosSemCategoria = products.filter(p => !p.categoriaId).length;
-  const produtoMaisCaro = totalProdutos > 0 
-    ? Math.max(...products.map(p => p.preco || 0)) 
+  const produtoMaisCaro = totalProdutos > 0
+    ? Math.max(...products.map(p => p.preco || 0))
     : 0;
-  const produtoMaisBarato = totalProdutos > 0 
-    ? Math.min(...products.map(p => p.preco || 0)) 
+  const produtoMaisBarato = totalProdutos > 0
+    ? Math.min(...products.map(p => p.preco || 0))
     : 0;
   const valorTotalEstoque = products.reduce((sum, p) => sum + (p.preco || 0), 0);
 
@@ -47,18 +47,18 @@ export const ReportsScreen: React.FC = () => {
     };
   });
 
-  const StatCard = ({ 
-    title, 
-    value, 
-    subtitle, 
-    icon, 
-    color 
-  }: { 
-    title: string; 
-    value: string; 
-    subtitle: string; 
-    icon: string; 
-    color: string; 
+  const StatCard = ({
+    title,
+    value,
+    subtitle,
+    icon,
+    color
+  }: {
+    title: string;
+    value: string;
+    subtitle: string;
+    icon: string;
+    color: string;
   }) => (
     <View style={[styles.statCard, { borderLeftColor: color }]}>
       <View style={styles.statHeader}>
@@ -78,9 +78,9 @@ export const ReportsScreen: React.FC = () => {
     <ScrollView
       style={styles.container}
       refreshControl={
-        <RefreshControl 
-          refreshing={productsRefreshing || categoriesRefreshing} 
-          onRefresh={handleRefresh} 
+        <RefreshControl
+          refreshing={productsRefreshing || categoriesRefreshing}
+          onRefresh={handleRefresh}
         />
       }
     >
@@ -119,22 +119,22 @@ export const ReportsScreen: React.FC = () => {
 
       <View style={styles.detailedStats}>
         <Text style={styles.sectionTitle}>Estatísticas Detalhadas</Text>
-        
+
         <View style={styles.statRow}>
           <Text style={styles.statLabel}>Total de Produtos</Text>
           <Text style={styles.statValue}>{totalProdutos}</Text>
         </View>
-        
+
         <View style={styles.statRow}>
           <Text style={styles.statLabel}>Total de Categorias</Text>
           <Text style={styles.statValue}>{totalCategorias}</Text>
         </View>
-        
+
         <View style={styles.statRow}>
           <Text style={styles.statLabel}>Produtos sem Categoria</Text>
           <Text style={styles.statValue}>{produtosSemCategoria}</Text>
         </View>
-        
+
         <View style={styles.statRow}>
           <Text style={styles.statLabel}>Valor Médio dos Produtos</Text>
           <Text style={styles.statValue}>R$ {valorMedio.toFixed(2)}</Text>
@@ -143,7 +143,7 @@ export const ReportsScreen: React.FC = () => {
 
       <View style={styles.categoryDistribution}>
         <Text style={styles.sectionTitle}>Distribuição por Categoria</Text>
-        
+
         {produtosPorCategoria.length === 0 ? (
           <View style={styles.emptyDistribution}>
             <Ionicons name="stats-chart-outline" size={48} color="#ccc" />
@@ -161,11 +161,11 @@ export const ReportsScreen: React.FC = () => {
                 </Text>
               </View>
               <View style={styles.progressBar}>
-                <View 
+                <View
                   style={[
                     styles.progressFill,
                     { width: `${item.percentual}%`, backgroundColor: getColorByIndex(index) }
-                  ]} 
+                  ]}
                 />
               </View>
             </View>
